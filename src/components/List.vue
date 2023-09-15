@@ -36,24 +36,16 @@
 
 <script setup>
 
-import {useSearchStore} from "@/stores/SearchStore";
-
-
-
-import {useModalStore} from "@/stores/counter";
 import Modal from "@/components/Modal.vue";
-import NotPage from "@/components/NotPage.vue";
-
-
-
+import {onBeforeUpdate} from "vue";
+import {useSearchStore} from "@/stores/SearchStore";
 const state = useSearchStore()
 
-state.getTodos()
-
-
+onBeforeUpdate(() => {
+  state.getTodos()
+})
 
 </script>
-
 
 <style>
 .List {

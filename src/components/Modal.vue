@@ -18,18 +18,26 @@
 import {useSearchStore} from "@/stores/SearchStore";
 import {useModalStore} from "@/stores/counter";
 import {ref} from "vue";
-
-
+const state = useSearchStore()
+const stateModal = useModalStore()
+import {onBeforeUpdate, onUpdated, ref} from "vue";
 
 const state = useSearchStore()
 const stateModal = useModalStore()
-
 const titleInp = ref('')
 const textInp = ref("")
 const saveDateInp = ref("")
 
 
+
 const add = () => {
+
+  state.getTodos()
+
+  onBeforeUpdate(() => {
+    state.getTodos()
+  })
+
   const obj = {
     title:titleInp.value,
     text:textInp.value,
